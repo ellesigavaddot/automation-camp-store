@@ -1,0 +1,24 @@
+{
+  "name": "automation-camp-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -R -f cypress/reports; mkdir cypress/reports; rm -f mochawesome.json",
+    "run": "npx cypress run",
+    "test": "npm-run-all clean run report -c",
+    "test:spec": "npm-run-all clean \"run -- --spec {1}\" report -c --",
+    "report": "npx mochawesome-merge cypress/reports/*.json > mochawesome.json && npx marge mochawesome.json && open mochawesome-report/mochawesome.html && rm -f mochawesome.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ellesigavaddot/automation-camp-store.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ellesigavaddot/automation-camp-store/issues"
+  },
+  "homepage": "https://github.com/ellesigavaddot/automation-camp-store#readme"
+}
