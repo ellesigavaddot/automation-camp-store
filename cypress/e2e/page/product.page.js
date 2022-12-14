@@ -29,6 +29,8 @@ class HomePage{
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
 
+    get allNaveItems(){ return }
+
 
 
     
