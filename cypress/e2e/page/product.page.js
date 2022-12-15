@@ -29,11 +29,15 @@ class HomePage{
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
 
-    get allNaveItems(){ return }
+    get allNavButtons(){ return ('div.css-0 div.chakra-stack.css-7di1ue button') }
 
-
-
+    get dotImgCntrl1(){ return ('ul.control-dots li:nth-child(1)')}
     
+    get dotImgCntrl2(){ return ('ul.control-dots li:nth-child(2)')}
+
+    get selectedImageLegend(){ return ('li.slide.selected div p')}
+
+    get carouselStatus(){ return ('p.carousel-status')}
     //#endregion
 
 
@@ -68,6 +72,24 @@ class HomePage{
         cy.get(inputQty).should('be.visible').and('have.value', '1')
         cy.get(inputQty).clear()
         cy.get(inputQty).type('4')
+    }
+
+    clickImage(productindex){
+
+        let prodImg = `div#product-${productindex} div.css-5ge9zd div.chakra-aspect-ratio.css-791950 img`
+
+        cy.get(prodImg).should('exist').and('be.visible')
+        cy.get(prodImg).click()
+        cy.wait(2000)
+
+    }
+
+    toSecondImg(){
+
+        cy.get(this.dotImgCntrl1).should('be.visible')
+
+        cy.get(this.dotImgCntrl2).click()
+        cy.wait(1500)
     }
 
     addFirstProductToCart(){
