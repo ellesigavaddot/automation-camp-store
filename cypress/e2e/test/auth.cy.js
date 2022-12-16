@@ -12,7 +12,7 @@ describe('Login and Sign Up', ()=> {
 
     it('should login an existing user', ()=> {
         cy.origin(
-            "https://dev-mlluudmotpwoldtv.us.auth0.com/login",
+            "https://dev-mlluudmotpwoldtv.us.auth0.com",
             { args: {} },
             ({}) => {
             cy.get('[type="email"]').type("test123@gmail.com");
