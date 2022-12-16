@@ -11,6 +11,7 @@ describe('Login and Sign Up', ()=> {
     })
 
     it('should login an existing user', ()=> {
+        cy.wait(2500)
         cy.origin(
             "https://dev-mlluudmotpwoldtv.us.auth0.com",
             { args: {} },
@@ -19,6 +20,8 @@ describe('Login and Sign Up', ()=> {
             cy.get('[type="password"]').type("Password1!", { log: false });
             cy.get("[name=submit]").click();
         })
+
+        cy.url().should('eq','https://ui-automation-camp.vercel.app/products')
 
     })
 
