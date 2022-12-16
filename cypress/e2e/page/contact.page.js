@@ -21,13 +21,13 @@ get buttonSendMsg(){ return ('div.css-g0ymzp button')}
 
 get toastMessage(){ return ('div.chakra-toast__inner.css-dixmdy')}
 
-get errorFieldRqd(){ return }
+get errorFieldRqd(){ return ('')}
 
 //#endregion
 
 //#region Methods
 
-submitContactForm(firstname,lastname,email,subject,message){
+submitContactForm(){
     cy.get(this.inputFirstname).should('be.visible')
 
     cy.get(this.inputFirstname).type('Test')
