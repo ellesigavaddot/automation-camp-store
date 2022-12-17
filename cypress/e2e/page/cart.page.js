@@ -14,6 +14,8 @@ get linkDetailedCart(){return ('button.snipcart-button-link')}
 
 get buttonCheckout(){ return ('button.snipcart-button-primary')}
 
+get cartCounter(){ return ('button.snipcart-cart-header__option.snipcart-cart-header__count')}
+
 
 //#endregion
 
