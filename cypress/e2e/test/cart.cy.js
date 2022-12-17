@@ -5,7 +5,7 @@ import Product from '../page/product.page'
 describe('Cart Test', ()=>{
     beforeEach(()=>{
         cy.visit('/products')
-        cy.wait(2500)
+        cy.wait(4500)
     })
 
     it('should verify all items have been added to cart', ()=>{
@@ -44,7 +44,7 @@ describe('Cart Test', ()=>{
 
     })
 
-    it('should add the correct quantity of an item to the cart ',()=>{
+    it.only('should add the correct quantity of an item to the cart ',()=>{
         //clear the input of the chosen item
 
         Product.changProdQty('3')

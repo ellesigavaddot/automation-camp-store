@@ -2,12 +2,14 @@
 
 import ProductPage from '../page/product.page'
 import productData from '../data/product.data'
+import Auth from '../page/auth.page'
 
 describe('Product Detail page', ()=>{
 
     beforeEach(()=>{
-        Auth.login('test123@gmail.com','Password1!')
-        //cy.visit('/products')
+        // cy.visit('/')
+        // Auth.login('test123@gmail.com','Password1!')
+        cy.visit('/products')
         cy.wait(1500)
     })
 
