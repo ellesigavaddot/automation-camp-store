@@ -9,6 +9,8 @@ class HomePage{
 
     get buttonSignout(){ return ('#top-sign-out')}
 
+    get productHeader(){ return ('h2.chakra-heading.css-1jhlc8u')}
+
     get addToCartButton(){ return ('button#add-to-cart')}
 
     get buttonRemove(){ return ('button.snipcart-button-icon.is-danger')}
@@ -23,11 +25,21 @@ class HomePage{
 
     get increaseProductQuantity() {return (`ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > button[title='Increment quantity']`)}
 
-    get itemQty(){return 'ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span'}
+    get itemQty(){return ('ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span')}
+
 
     get prodName(){ return ('ul.snipcart-item-list li.snipcart-item-line h2')}
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
+
+    //Product Detail Selectors
+    get productName(){ return ('div.css-1p34w40 h2.chakra-heading.css-1dklj6k')}
+
+    get productDescrpt(){ return ('div.chakra-stack.css-84zodg + p')}
+
+    get productPrice(){ return ('div.chakra-stack.css-egoftb > div:nth-child(3) > p:nth-child(2)')}
+
+    get buttonBackToProduct(){ return ('div.chakra-stack.css-dpkrn2 h2')}
 
     get allNavButtons(){ return ('div.css-0 div.chakra-stack.css-7di1ue button') }
 
@@ -38,15 +50,37 @@ class HomePage{
     get selectedImageLegend(){ return ('li.slide.selected div p')}
 
     get carouselStatus(){ return ('p.carousel-status')}
+
+    get relatedProductsImgs(){ return ('div.css-12qzrsi img')}
+
+    get headerRelatedProducts(){ return ('h2.chakra-heading.css-1dklj6k')}
+
+    get inputQtyPD(){ return ('div.chakra-stack.css-egoftb div.chakra-numberinput input')}
+
     //#endregion
 
 
     //#region methods
+
+    //increase product quantity by a number accepted by the user on product detail(PD) screen
+    increaseProdQtyPD(number){
+        cy.get(this.inputQtyPD).should('be.visible')
+        cy.get(this.inputQtyPD).clear()
+        cy.get(this.inputQtyPD).type(number)
+        cy.get(this.inputQtyPD)
+        cy.get(this.inputQtyPD).should('have.attr', 'value', number)
+
+        cy.wait(1500)
+        cy.get(this.addToCartButton).click()
+    }
+
     closeCartSummary(){
         cy.get(this.cartCloseButton).should('be.visible')
 
         cy.get(this.cartCloseButton).click()
     }
+
+    //update product quantity by click the quanity arrowa
 
     incrementProductQtyBy2(){
         cy.get(this.itemQty).should('exist')
@@ -65,8 +99,9 @@ class HomePage{
         cy.get(addToCartBtn).click()
     }
 
-    changProdQty(product){
 
+    //update product quantity by typing into the input field
+    changProdQty(product){
         let inputQty = `#product-${product} input.chakra-numberinput__field`
 
         cy.get(inputQty).should('be.visible').and('have.value', '1')
@@ -75,19 +110,18 @@ class HomePage{
     }
 
     clickImage(productindex){
-
+      
         let prodImg = `div#product-${productindex} div.css-5ge9zd div.chakra-aspect-ratio.css-791950 img`
 
         cy.get(prodImg).should('exist').and('be.visible')
         cy.get(prodImg).click()
+
         cy.wait(2000)
 
     }
 
     toSecondImg(){
-
         cy.get(this.dotImgCntrl1).should('be.visible')
-
         cy.get(this.dotImgCntrl2).click()
         cy.wait(1500)
     }
@@ -113,11 +147,12 @@ class HomePage{
         cy.wait(1500)
     }
 
-    // increaseQty(product){
-    //     let inputQty1 = `#product-${product} input.chakra-numberinput__field `
+    backToProducts(){
+        cy.get(this.buttonBackToProduct).should('be.visible')
+        cy.get(this.buttonBackToProduct).click()
+        cy.wait(1500)
+    }
 
-    //     cy.get(inputQty)
-    // }
 
 
     //#endregion
