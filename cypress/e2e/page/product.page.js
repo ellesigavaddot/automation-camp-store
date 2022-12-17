@@ -13,6 +13,14 @@ class HomePage{
 
     get addToCartButton(){ return ('button#add-to-cart')}
 
+    get names(){ return ('div > div.chakra-stack.css-1oeb4ru > p')} //selects all items names on the product page
+
+    get categoryFilter(){ return ('#category')}
+
+    get itemcategoryTag(){ return ('p + span.css-1ccau2i')}
+
+    //Cart Modal getters
+
     get buttonRemove(){ return ('button.snipcart-button-icon.is-danger')}
 
     get messageCartEmpty(){ return ('h1.snipcart-empty-cart__title')}
@@ -60,6 +68,10 @@ class HomePage{
 
 
     get buttonContactNav(){ return ('#top-contact')}
+
+    get selectSortDropDown(){ return ('#sort')}
+
+
 
 
     //#endregion
@@ -159,6 +171,10 @@ class HomePage{
         cy.wait(1500)
     }
 
+    //callback - returns the needed sort and 
+    selectSort(sort){
+        cy.get(this.selectSortDropDown).select(sort)
+    }
 
 
 
