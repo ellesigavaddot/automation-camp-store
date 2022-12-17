@@ -8,6 +8,7 @@ import productData from '../data/product.data'
 
 describe('Favourites/Wishlist', ()=>{
     beforeEach(()=>{
+        //cy.visit('/') //uncomment to run on your local
         //Auth.login("test123@gmail.com", "Password1!") //uncomment to run 
         //cy.url().should('eq','https://ui-automation-camp.vercel.app/products')  //uncomment to run 
         cy.visit('/products')           //comment out to run
