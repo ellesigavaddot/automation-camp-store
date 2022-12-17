@@ -31,6 +31,8 @@ class HomePage{
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
 
+    get cartCount(){ return ('button.snipcart-cart-header__option.snipcart-cart-header__count')}
+
     //Product Detail Selectors
     get productName(){ return ('div.css-1p34w40 h2.chakra-heading.css-1dklj6k')}
 
