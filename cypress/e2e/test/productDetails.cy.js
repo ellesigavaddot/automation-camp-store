@@ -24,7 +24,7 @@ describe('Product Detail page', ()=>{
         cy.url().should('eq','https://ui-automation-camp.vercel.app/products')
     })
 
-    it.only('should open detail product view for related products', ()=>{
+    it('should open detail product view for related products', ()=>{
         cy.url().should('eq','https://ui-automation-camp.vercel.app/products')
         cy.get(ProductPage.productHeader).should('be.visible').and('have.text',"Products")
 
@@ -44,25 +44,19 @@ describe('Product Detail page', ()=>{
 
     it('should add item to cart from the product detail view', ()=>{
 
-        /*
-        1.assert on product page,
-        2.go to product page, assert on the name of the item 
-        3.add product to cart
-        4.assert that the product is added successfully to the cart
-        */
-
         cy.url().should('eq','https://ui-automation-camp.vercel.app/products')
 
         ProductPage.clickImage(15) //open product detail view for Quality Heal Shoes
-        cy.get(ProductPage.productName).should('have.text', 'Quality Sweatshirt ')
+        cy.get(ProductPage.productName).should('have.text', productData.products[15].prodname)
         cy.get(ProductPage.productPrice).should('have.text', productData.products[15].price)
 
         ProductPage.increaseProdQtyPD(2)
+        cy.get(ProductPage.cartSummaryModal).should('be.visible')
 
 
+        cy.get(ProductPage.prodName).should('have.text', " "+productData.products[15].prodname) // assert on the name of the product added
+        cy.get(ProductPage.itemQty).should('have.text', '2')
 
-
-        
     })
 
 

@@ -25,7 +25,7 @@ class HomePage{
 
     get increaseProductQuantity() {return (`ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > button[title='Increment quantity']`)}
 
-    get itemQty(){return 'ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span'}
+    get itemQty(){return ('ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span')}
 
     get prodName(){ return ('ul.snipcart-item-list li.snipcart-item-line h2')}
 
@@ -65,8 +65,9 @@ class HomePage{
     increaseProdQtyPD(number){
         cy.get(this.inputQtyPD).should('be.visible')
         cy.get(this.inputQtyPD).clear()
-        cy.get(this.inputQtyPD).type(4)
-        cy.get(this.inputQtyPD).should('have.text', '4')
+        cy.get(this.inputQtyPD).type(number)
+        cy.get(this.inputQtyPD)
+        cy.get(this.inputQtyPD).should('have.attr', 'value', number)
 
         cy.wait(1500)
         cy.get(this.addToCartButton).click()
