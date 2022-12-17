@@ -8,7 +8,8 @@ import Auth from '../page/auth.page'
 
 describe('Checkout from Cart', ()=>{
     beforeEach(()=>{
-        Auth.login('test123@gmail.com','Password1!')
+        // cy.visit('/')
+        // Auth.login('test123@gmail.com','Password1!')
         cy.visit('/products')
         cy.wait(1500)
     })
