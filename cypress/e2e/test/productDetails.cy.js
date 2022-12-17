@@ -6,8 +6,9 @@ import productData from '../data/product.data'
 describe('Product Detail page', ()=>{
 
     beforeEach(()=>{
-        cy.visit('/products')
-        cy.wait(2000)
+        Auth.login('test123@gmail.com','Password1!')
+        //cy.visit('/products')
+        cy.wait(1500)
     })
 
     it('should return to products screen from product detail screen', ()=>{
