@@ -58,6 +58,10 @@ class HomePage{
 
     get inputQtyPD(){ return ('div.chakra-stack.css-egoftb div.chakra-numberinput input')}
 
+
+    get buttonContactNav(){ return ('#top-contact')}
+
+
     //#endregion
 
 
@@ -74,7 +78,6 @@ class HomePage{
         cy.wait(1500)
         cy.get(this.addToCartButton).click()
     }
-
 
     closeCartSummary(){
         cy.get(this.cartCloseButton).should('be.visible')
@@ -106,7 +109,7 @@ class HomePage{
 
         cy.get(inputQty).should('be.visible').and('have.value', '1')
         cy.get(inputQty).clear()
-        cy.get(inputQty).type('4')
+        cy.get(inputQty).type('4 {enter}')
     }
 
     clickImage(productindex){
