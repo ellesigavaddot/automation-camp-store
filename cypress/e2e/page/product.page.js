@@ -25,7 +25,7 @@ class HomePage{
 
     get increaseProductQuantity() {return (`ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > button[title='Increment quantity']`)}
 
-    get itemQty(){return ('ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span')}
+    get itemQty(){return 'ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span'}
 
     get prodName(){ return ('ul.snipcart-item-list li.snipcart-item-line h2')}
 
@@ -57,6 +57,11 @@ class HomePage{
     get inputQtyPD(){ return ('div.chakra-stack.css-egoftb div.chakra-numberinput input')}
 
 
+    get buttonContactNav(){ return ('#top-contact')}
+
+
+
+    
     //#endregion
 
 
