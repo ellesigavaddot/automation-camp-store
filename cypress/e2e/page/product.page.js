@@ -27,7 +27,6 @@ class HomePage{
 
     get itemQty(){return ('ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span')}
 
-
     get prodName(){ return ('ul.snipcart-item-list li.snipcart-item-line h2')}
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
@@ -57,11 +56,12 @@ class HomePage{
 
     get inputQtyPD(){ return ('div.chakra-stack.css-egoftb div.chakra-numberinput input')}
 
+
     //#endregion
 
 
     //#region methods
-
+    
     //increase product quantity by a number accepted by the user on product detail(PD) screen
     increaseProdQtyPD(number){
         cy.get(this.inputQtyPD).should('be.visible')
@@ -79,6 +79,7 @@ class HomePage{
 
         cy.get(this.cartCloseButton).click()
     }
+
 
     //update product quantity by click the quanity arrowa
 
@@ -110,12 +111,10 @@ class HomePage{
     }
 
     clickImage(productindex){
-      
         let prodImg = `div#product-${productindex} div.css-5ge9zd div.chakra-aspect-ratio.css-791950 img`
 
         cy.get(prodImg).should('exist').and('be.visible')
         cy.get(prodImg).click()
-
         cy.wait(2000)
 
     }
@@ -147,11 +146,13 @@ class HomePage{
         cy.wait(1500)
     }
 
+
     backToProducts(){
         cy.get(this.buttonBackToProduct).should('be.visible')
         cy.get(this.buttonBackToProduct).click()
         cy.wait(1500)
     }
+
 
 
 
