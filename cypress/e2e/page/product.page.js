@@ -60,13 +60,11 @@ class HomePage{
     get buttonContactNav(){ return ('#top-contact')}
 
 
-
-    
     //#endregion
 
 
     //#region methods
-    
+
     //increase product quantity by a number accepted by the user on product detail(PD) screen
     increaseProdQtyPD(number){
         cy.get(this.inputQtyPD).should('be.visible')
@@ -85,8 +83,8 @@ class HomePage{
         cy.get(this.cartCloseButton).click()
     }
 
-
     //update product quantity by click the quanity arrowa
+
 
     incrementProductQtyBy2(){
         cy.get(this.itemQty).should('exist')
@@ -105,9 +103,9 @@ class HomePage{
         cy.get(addToCartBtn).click()
     }
 
-
     //update product quantity by typing into the input field
     changProdQty(product){
+
         let inputQty = `#product-${product} input.chakra-numberinput__field`
 
         cy.get(inputQty).should('be.visible').and('have.value', '1')
@@ -157,8 +155,6 @@ class HomePage{
         cy.get(this.buttonBackToProduct).click()
         cy.wait(1500)
     }
-
-
 
 
     //#endregion
