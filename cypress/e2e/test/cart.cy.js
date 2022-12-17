@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
 import Cart from '../page/cart.page'
-import productPage from '../page/product.page'
 import Product from '../page/product.page'
 
 describe('Cart Test', ()=>{
