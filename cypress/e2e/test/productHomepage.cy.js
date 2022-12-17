@@ -1,10 +1,13 @@
 /// <reference types="cypress" />
 
 import Homepage from '../page/product.page'
+import Auth from '../page/auth.page'
 
 describe('Product Gallery Homepage', ()=>{
 
     before(()=>{
+        // cy.visit('/')
+        // Auth.login('test123@gmail.com', 'Password1!')
         cy.visit('/products')
         cy.wait(2500)
     })
@@ -13,7 +16,7 @@ describe('Product Gallery Homepage', ()=>{
         cy.contains('Shop Now,').should('be.visible') //check that we are on homepage
         cy.get(Homepage.buttonSignout).should('be.visible')
 
-        const buttonNames = ['Home', 'About','Contact','$0.00', 'Sign Out']
+        const buttonNames = ['Home', 'Favorites [0]', 'About','Contact','$0.00', 'Sign Out']
         cy.wait(2500)
         cy.get('button#top-sign-out').contains('Sign Out').should('exist')
         cy.get(Homepage.allNavButtons).each(($elem,index)=>{

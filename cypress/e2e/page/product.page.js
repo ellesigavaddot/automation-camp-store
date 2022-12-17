@@ -110,7 +110,7 @@ class HomePage{
 
         cy.get(inputQty).should('be.visible').and('have.value', '1')
         cy.get(inputQty).clear()
-        cy.get(inputQty).type('4')
+        cy.get(inputQty).type('4 {enter}')
     }
 
     clickImage(productindex){
