@@ -13,6 +13,14 @@ class HomePage{
 
     get addToCartButton(){ return ('button#add-to-cart')}
 
+    get messageToast(){return ('ul#chakra-toast-manager-top-right li.chakra-toast')} //toast
+
+    get btnCloseToast(){ return ('button.css-u7m3ts')}
+
+    get buttonAddToFav(){ return ('svg#add-to-favorite')}
+
+    get buttonRemoveFrFav(){ return ('svg#remove-from-favorite')}
+
     get buttonRemove(){ return ('button.snipcart-button-icon.is-danger')}
 
     get messageCartEmpty(){ return ('h1.snipcart-empty-cart__title')}
@@ -31,7 +39,7 @@ class HomePage{
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
 
-    //Product Detail Selectors
+    //Product Detail Page Selectors
     get productName(){ return ('div.css-1p34w40 h2.chakra-heading.css-1dklj6k')}
 
     get productDescrpt(){ return ('div.chakra-stack.css-84zodg + p')}
@@ -154,6 +162,50 @@ class HomePage{
         cy.get(this.buttonBackToProduct).should('be.visible')
         cy.get(this.buttonBackToProduct).click()
         cy.wait(1500)
+    }
+
+     //method to add product to fave on product homepage
+    addProductToFav(product){
+        let addToFav = `#product-${product} svg#add-to-favorite`
+
+        cy.get(addToFav).should('be.visible')
+        cy.get(addToFav).click()
+        cy.wait(1500)
+
+    }
+
+    //method to remove product from fave on product homepage
+    removeProductFrFav(product){
+        let removeFrFav = `#product-${product} svg#remove-from-favorite`
+
+        cy.get(removeFrFav).should('be.visible')
+        cy.get(removeFrFav).click()
+        cy.wait(1500)
+    
+    }
+
+    checkFavButton1(product){
+        let addToFav = `#product-${product} svg#add-to-favorite`
+        cy.get(addToFav).should('be.visible')
+
+    }
+
+    checkFavButton2(product){
+        let removeFrFav = `#product-${product} svg#remove-from-favorite`
+        cy.get(removeFrFav).should('be.visible')
+
+    }
+
+    //add product to fave from product Detail screen)
+    addProductToFavPD(){
+        cy.get(this.buttonAddToFav).should('exist').and('be.visible')
+        cy.get(this.buttonAddToFav).click()
+
+    }
+
+    closeToastMsg(){
+        cy.get(this.btnCloseToast).should('exist').and('be.visible')
+        cy.get(this.btnCloseToast).click()
     }
 
 
