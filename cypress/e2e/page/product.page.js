@@ -27,6 +27,7 @@ class HomePage{
 
     get itemQty(){return ('ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span')}
 
+
     get prodName(){ return ('ul.snipcart-item-list li.snipcart-item-line h2')}
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
@@ -73,7 +74,6 @@ class HomePage{
         cy.get(this.addToCartButton).click()
     }
 
-
     closeCartSummary(){
         cy.get(this.cartCloseButton).should('be.visible')
 
@@ -81,6 +81,7 @@ class HomePage{
     }
 
     //update product quantity by click the quanity arrowa
+
     incrementProductQtyBy2(){
         cy.get(this.itemQty).should('exist')
         cy.get(this.itemQty).should('have.text','1')
@@ -98,6 +99,7 @@ class HomePage{
         cy.get(addToCartBtn).click()
     }
 
+
     //update product quantity by typing into the input field
     changProdQty(product){
         let inputQty = `#product-${product} input.chakra-numberinput__field`
@@ -108,11 +110,14 @@ class HomePage{
     }
 
     clickImage(productindex){
+      
         let prodImg = `div#product-${productindex} div.css-5ge9zd div.chakra-aspect-ratio.css-791950 img`
 
         cy.get(prodImg).should('exist').and('be.visible')
         cy.get(prodImg).click()
-        cy.wait(2500)
+
+        cy.wait(2000)
+
     }
 
     toSecondImg(){
@@ -137,6 +142,7 @@ class HomePage{
 
     signOut(){
         cy.get(this.buttonSignout).should('be.visible')
+
         cy.get(this.buttonSignout).click()
         cy.wait(1500)
     }
@@ -146,7 +152,6 @@ class HomePage{
         cy.get(this.buttonBackToProduct).click()
         cy.wait(1500)
     }
-
 
 
 
