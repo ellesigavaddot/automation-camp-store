@@ -8,7 +8,7 @@ import Auth from '../page/auth.page'
 
 describe('Checkout from Cart', ()=>{
     beforeEach(()=>{
-        //Auth.login('test123@gmail.com','Password1!')
+        Auth.login('test123@gmail.com','Password1!')
         cy.visit('/products')
         cy.wait(1500)
     })
@@ -24,8 +24,19 @@ describe('Checkout from Cart', ()=>{
 
         cy.get(ProductPage.cartSummaryModal).should('exist').and('be.visible')
         cy.get(ProductPage.prodName).contains(' Quality Pillow ').should('be.visible')
-        
 
+        //click checkout in cart summary modal
+        ProductPage.checkoutFromCartModal()
+        
+        // assert that user is on checkoutpage
+        cy.url().should('eq','https://ui-automation-camp.vercel.app/products#/checkout')
+        CheckoutPage.filloutBillingForm("Test",'email@email.com',"1234 Baker Ave N","New York","00000")
+        CheckoutPage.fillPaymentForm()
+
+        //assert parts of the Order confirmation page
+        
+        cy.get(OrderConfirmationPage.confMessage).eq(0).should('have.text', 'Thank you for your order')
+        cy.get(OrderConfirmationPage.invoiceNumber).should('exist')
 
     })
 

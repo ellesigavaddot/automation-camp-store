@@ -1,4 +1,3 @@
-
 class CheckoutPage{
 
 //#region Getters
@@ -12,16 +11,18 @@ get inputEmail(){ return ('[name="email"]')}
 
 get inputStrAdd(){ return ('div.snipcart-textbox:nth-child(2)')}
 
-get inputApt(){ return ('input#address2_8c0ebc01-a93f-491a-b439-b2c40a319df2')}
+get inputApt(){ return ('[name="address2"]')}
 
-get inputCity(){ return ('input#address2_8c0ebc01-a93f-491a-b439-b2c40a319df2')}
+get inputCity(){ return ('[name="city"]')}
 
 get buttonContinuePay(){ return ('button.snipcart-button-primary.snipcart-submit.snipcart-base-button.is-icon-right')}
+
+get inputPostalCode(){ return ('[name="postalCode"]')}
 
 
 //Payment section
 
-get inputCardNumber(){ return ('input#card-number.snipcart-payment-form__input')}
+get inputCardNumber(){ return ('input#card-number')}
 
 get inputCardExpiry(){return ('input#expiry-date')}
 
@@ -43,10 +44,39 @@ get itemTotal(){ return ('snipcart-cart-summary-items-list li:nth-child(1) span.
 
 get cartTotal(){return ('div.snipcart-summary-fees__item.snipcart-summary-fees__total')}
 
+
 //#endregion
 
 
 //#region Methods
+
+filloutBillingForm(name,email,address,city,postalcode){
+    cy.get(this.inputFullname).type(name)
+    cy.get(this.inputEmail).type(email)
+    cy.get(this.inputStrAdd).type(address)
+    cy.get(this.inputCity).type(city)
+
+    //select country as US and a state
+    cy.get('input.snipcart-typeahead__dropdown').eq(1).type('United States{enter}', {force: true})
+    cy.get('input.snipcart-typeahead__dropdown').eq(2).type('Alaska{enter}', {force: true})
+
+    cy.get(this.inputPostalCode).type(postalcode)
+    cy.get(this.buttonContinuePay).click()
+
+}
+
+fillPaymentForm(){
+    cy.wait(2500) //wait for oayment iframe to load
+
+    cy.iframe('.snipcart-payment-card-form iframe').find(this.inputCardNumber).type('4242 4242 4242 4242')
+    cy.iframe('.snipcart-payment-card-form iframe').find(this.inputCardExpiry).type('0527')
+    cy.iframe('.snipcart-payment-card-form iframe').find(this.inputCardCVV).type('123')
+
+
+    cy.get(this.buttonPlaceOrder).click()
+    cy.wait(1500)
+    
+}
 //#endregion
 
 

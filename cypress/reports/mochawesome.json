@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-12-17T12:26:24.243Z",
+    "end": "2022-12-17T12:26:36.288Z",
+    "duration": 12045,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ddb019b3-d52b-4055-b3dc-9b9b0b1f6291",
+      "title": "",
+      "fullFile": "cypress/e2e/test/checkout.cy.js",
+      "file": "cypress/e2e/test/checkout.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ceeb156e-a3eb-47dc-83d8-a7e14c274240",
+          "title": "Checkout from Cart",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should checkout single item from cart",
+              "fullTitle": "Checkout from Cart should checkout single item from cart",
+              "timedOut": null,
+              "duration": 11978,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.url().should('eq', 'https://ui-automation-camp.vercel.app/products');\ncy.get(_product.default.productHeader).should('be.visible').and('not.have.attr', 'hidden'); //add Quality Pillow to Cart - it is the 5th product, with an index of 4\n_product.default.addProductToCart(4);\ncy.get(_product.default.cartSummaryModal).should('exist').and('be.visible');\ncy.get(_product.default.prodName).contains(' Quality Pillow ').should('be.visible'); //click checkout in cart summary modal\n_product.default.checkoutFromCartModal(); // assert that user is on checkoutpage\n\ncy.url().should('eq', 'https://ui-automation-camp.vercel.app/products#/checkout');\n_checkout.default.filloutBillingForm(\"Test\", 'email@email.com', \"1234 Baker Ave N\", \"New York\", \"00000\");\n_checkout.default.fillPaymentForm(); //assert parts of the Order confirmation page\n\ncy.get(_orderConf.default.confMessage).should('have.text', 'Thank you for your order');\ncy.get(_orderConf.default.invoiceNumber).should('exist');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `snipcart-button-primary snipcart-base-button is-icon-right`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `snipcart-button-primary snipcart-base-button is-icon-right`, but never found it.\n    at HomePage.checkoutFromCartModal (webpack:///./cypress/e2e/page/product.page.js:153:47)\n    at Context.eval (webpack:///./cypress/e2e/test/checkout.cy.js:29:20)",
+                "diff": null
+              },
+              "uuid": "9c1942a4-0ab7-4907-9ebf-8b5726bfdf01",
+              "parentUUID": "ceeb156e-a3eb-47dc-83d8-a7e14c274240",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "9c1942a4-0ab7-4907-9ebf-8b5726bfdf01"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 11978,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -31,7 +31,7 @@ class HomePage{
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
 
-    get cartCount(){ return ('button.snipcart-cart-header__option.snipcart-cart-header__count')}
+    get buttonCheckoutCartSummary(){ return ('button.snipcart-button-primary.snipcart-base-button.is-icon-right')}
 
     //Product Detail Selectors
     get productName(){ return ('div.css-1p34w40 h2.chakra-heading.css-1dklj6k')}
@@ -146,6 +146,13 @@ class HomePage{
     backToProducts(){
         cy.get(this.buttonBackToProduct).should('be.visible')
         cy.get(this.buttonBackToProduct).click()
+        cy.wait(1500)
+    }
+
+    checkoutFromCartModal(){
+        cy.get(this.buttonCheckoutCartSummary).should('be.visible')
+
+        cy.get(this.buttonCheckoutCartSummary).click()
         cy.wait(1500)
     }
 
