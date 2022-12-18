@@ -66,13 +66,17 @@ class HomePage{
 
     get inputQtyPD(){ return ('div.chakra-stack.css-egoftb div.chakra-numberinput input')}
 
-
     get buttonContactNav(){ return ('#top-contact')}
 
     get selectSortDropDown(){ return ('#sort')}
 
 
 
+
+    //getter for search
+    get inputSearch(){ return ('#search')}
+
+    get productDiv(){ return ('div.chakra-stack.css-uaqjf')}
 
     //#endregion
 
@@ -162,6 +166,23 @@ class HomePage{
         cy.get(this.buttonBackToProduct).should('be.visible')
         cy.get(this.buttonBackToProduct).click()
         cy.wait(1500)
+    }
+
+    typeInSearch(searchword){
+
+        cy.get(this.inputSearch).should('be.visible')
+        cy.get(this.inputSearch).type(searchword)
+    }
+
+    clearSearch(){
+
+        cy.get(this.inputSearch).should('be.visible')
+        cy.get(this.inputSearch).clear()
+    }
+
+    typeSpaceInSearch(){
+        cy.get(this.inputSearch).should('be.visible')
+        cy.get(this.inputSearch).type('{space}')
     }
 
     checkoutFromCartModal(){
