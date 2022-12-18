@@ -13,6 +13,14 @@ class HomePage{
 
     get addToCartButton(){ return ('button#add-to-cart')}
 
+    get names(){ return ('div > div.chakra-stack.css-1oeb4ru > p')} //selects all items names on the product page
+
+    get categoryFilter(){ return ('#category')}
+
+    get itemcategoryTag(){ return ('p + span.css-1ccau2i')}
+
+    //Cart Modal getters
+
     get buttonRemove(){ return ('button.snipcart-button-icon.is-danger')}
 
     get messageCartEmpty(){ return ('h1.snipcart-empty-cart__title')}
@@ -25,11 +33,13 @@ class HomePage{
 
     get increaseProductQuantity() {return (`ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > button[title='Increment quantity']`)}
 
-    get itemQty(){return 'ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span'}
+    get itemQty(){return ('ul.snipcart-item-list li:nth-child(1) div.snipcart-item-quantity__quantity > span')}
 
     get prodName(){ return ('ul.snipcart-item-list li.snipcart-item-line h2')}
 
     get inputQty(){ return ('#product-0 input.chakra-numberinput__field')}
+
+    get buttonCheckoutCartSummary(){ return ('button.snipcart-button-primary.snipcart-base-button.is-icon-right')}
 
     //Product Detail Selectors
     get productName(){ return ('div.css-1p34w40 h2.chakra-heading.css-1dklj6k')}
@@ -57,6 +67,10 @@ class HomePage{
     get inputQtyPD(){ return ('div.chakra-stack.css-egoftb div.chakra-numberinput input')}
 
     get buttonContactNav(){ return ('#top-contact')}
+
+    get selectSortDropDown(){ return ('#sort')}
+
+
 
 
     //getter for search
@@ -88,8 +102,6 @@ class HomePage{
     }
 
     //update product quantity by click the quanity arrowa
-
-
     incrementProductQtyBy2(){
         cy.get(this.itemQty).should('exist')
         cy.get(this.itemQty).should('have.text','1')
@@ -109,7 +121,6 @@ class HomePage{
 
     //update product quantity by typing into the input field
     changProdQty(product){
-
         let inputQty = `#product-${product} input.chakra-numberinput__field`
 
         cy.get(inputQty).should('be.visible').and('have.value', '1')
@@ -122,8 +133,7 @@ class HomePage{
 
         cy.get(prodImg).should('exist').and('be.visible')
         cy.get(prodImg).click()
-        cy.wait(2000)
-
+        cy.wait(2500)
     }
 
     toSecondImg(){
@@ -148,11 +158,9 @@ class HomePage{
 
     signOut(){
         cy.get(this.buttonSignout).should('be.visible')
-
         cy.get(this.buttonSignout).click()
         cy.wait(1500)
     }
-
 
     backToProducts(){
         cy.get(this.buttonBackToProduct).should('be.visible')
@@ -176,6 +184,19 @@ class HomePage{
         cy.get(this.inputSearch).should('be.visible')
         cy.get(this.inputSearch).type('{space}')
     }
+
+    checkoutFromCartModal(){
+        cy.get(this.buttonCheckoutCartSummary).should('be.visible')
+
+        cy.get(this.buttonCheckoutCartSummary).click()
+        cy.wait(1500)
+    }
+
+    //callback - returns the needed sort and 
+    selectSort(sort){
+        cy.get(this.selectSortDropDown).select(sort)
+    }
+
 
 
     //#endregion
